@@ -89,7 +89,7 @@ namespace Parcial2_SebastianRestrepoMira.Controllers
             return View(ticket);
         }
 
-        // POST: Tickets/Edit/5
+        // POST: Tickets/Validate/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
