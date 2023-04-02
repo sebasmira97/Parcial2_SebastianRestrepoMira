@@ -1,10 +1,10 @@
 ﻿@model Parcial2_SebastianRestrepoMira.DAL.Entities.Ticket
 
 @{
-    ViewData["Title"] = "Validar";
+    ViewData["Title"] = "Edit";
 }
 
-<h1>Validacion</h1>
+<h1>Edit</h1>
 
 <h4>Ticket</h4>
 <hr />
@@ -12,14 +12,26 @@
     <div class="col-md-4">
         <form asp-action="Validate">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="IsUsed" />
             <div class="form-group">
-                <label asp-for="Id" class="control-label"></label>
-                <input asp-for="Id" class="form-control" />
-                <span asp-validation-for="Id" class="text-danger"></span>
+                <label asp-for="UseDate" class="control-label"></label>
+                <input asp-for="UseDate" class="form-control" />
+                <span asp-validation-for="UseDate" class="text-danger"></span>
             </div>
-            
             <div class="form-group">
-                <input type="submit" value="Validar" class="btn btn-primary" />
+                <label asp-for="EntranceGate" class="control-label"></label>
+                <select asp-for="EntranceGate" class="form-control">
+                    <option value="" disabled="" selected="">Portería de ingreso</option>
+                    <option value="N">Norte</option>
+                    <option value="S">Sur</option>
+                    <option value="W">Oriental</option>
+                    <option value="E">Occidental</option>
+                </select>
+                <span asp-validation-for="EntranceGate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>

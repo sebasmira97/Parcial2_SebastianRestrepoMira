@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.Differencing;
 using Microsoft.EntityFrameworkCore;
 using Parcial2_SebastianRestrepoMira.DAL;
 using Parcial2_SebastianRestrepoMira.DAL.Entities;
@@ -27,21 +28,40 @@ namespace Parcial2_SebastianRestrepoMira.Controllers
                           Problem("Entity set 'DatabaseContext.Tickets'  is null.");
         }
 
-        // GET: Tickets/Details/5
-        public async Task<IActionResult> Details(Guid? id)
+        //POST: Formualario
+        [HttpPost]
+        public async Task<IActionResult> Index(Guid? id)
         {
             if (id == null || _context.Tickets == null)
             {
                 return NotFound();
             }
 
-            var ticket = await _context.Tickets
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var ticket = await _context.Tickets.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (ticket != null)
+            {
+                if(ticket.IsUsed == false)
+                {
+                    Console.WriteLine("Entro");
+                    return RedirectToAction(nameof(Validate), new { id });
+                }
+                else
+                {
+                    return RedirectToAction(nameof(ErrorValidate), new {id});
+                }
+            }
+
+            return View();
+        }
+
+        public async Task<IActionResult> ErrorValidate(Guid? id)
+        {
+            var ticket = await _context.Tickets.FirstOrDefaultAsync(m => m.Id == id);
             if (ticket == null)
             {
                 return NotFound();
             }
-
             return View(ticket);
         }
 
@@ -89,7 +109,7 @@ namespace Parcial2_SebastianRestrepoMira.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(Guid id, Ticket ticket)
+        public async Task<IActionResult> Validate(Guid id, Ticket ticket)
         {
             if (id != ticket.Id)
             {
@@ -100,6 +120,7 @@ namespace Parcial2_SebastianRestrepoMira.Controllers
             {
                 try
                 {
+                    ticket.IsUsed = true;
                     _context.Update(ticket);
                     await _context.SaveChangesAsync();
                 }

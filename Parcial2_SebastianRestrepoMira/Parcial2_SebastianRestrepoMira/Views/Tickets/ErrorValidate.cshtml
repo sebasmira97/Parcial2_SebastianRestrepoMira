@@ -1,29 +1,27 @@
 ﻿@model Parcial2_SebastianRestrepoMira.DAL.Entities.Ticket
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Entrada Usada";
 }
 
-<h1>Create</h1>
+<h1>La boleta ya fue usada</h1>
 
-<h4>Ticket</h4>
 <hr />
+
+
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="IsUsed" />
             <div class="form-group">
-                <label asp-for="UseDate" class="control-label"></label>
+                <label asp-for="UseDate" class="control-label">Fue usada el día:</label>
                 <input asp-for="UseDate" class="form-control" />
                 <span asp-validation-for="UseDate" class="text-danger"></span>
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="IsUsed" /> @Html.DisplayNameFor(model => model.IsUsed)
-                </label>
-            </div>
             <div class="form-group">
-                <label asp-for="EntranceGate" class="control-label"></label>
+                <label asp-for="EntranceGate" class="control-label">Por la entrada:</label>
                 <select asp-for="EntranceGate" class="form-control">
                     <option value="" disabled="" selected="">Portería de ingreso</option>
                     <option value="N">Norte</option>
@@ -32,9 +30,6 @@
                     <option value="E">Occidental</option>
                 </select>
                 <span asp-validation-for="EntranceGate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
