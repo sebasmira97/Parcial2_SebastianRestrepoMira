@@ -1,0 +1,18 @@
+﻿@model Parcial2_SebastianRestrepoMira.DAL.Entities.Ticket
+
+@{
+    ViewData["Title"] = "No existe la boleta";
+}
+
+<h1>Esta boleta no existe</h1>
+
+<h2>Tenga cuidado que puede ser fraudulenta</h2>
+<br/>
+<br/>
+<div>
+    <a asp-action="Index">Volver al validador</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

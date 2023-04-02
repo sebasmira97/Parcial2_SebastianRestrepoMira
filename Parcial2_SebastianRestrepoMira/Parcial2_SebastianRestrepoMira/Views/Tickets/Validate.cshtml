@@ -4,10 +4,11 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1>Registra el ingreso</h1>
 
 <h4>Ticket</h4>
 <hr />
+<br />
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Validate">
@@ -15,30 +16,34 @@
             <input type="hidden" asp-for="Id" />
             <input type="hidden" asp-for="IsUsed" />
             <div class="form-group">
-                <label asp-for="UseDate" class="control-label"></label>
+                <label asp-for="UseDate" class="control-label">Fecha de uso:</label><br/>
                 <input asp-for="UseDate" class="form-control" />
                 <span asp-validation-for="UseDate" class="text-danger"></span>
             </div>
+
+            <br />
             <div class="form-group">
-                <label asp-for="EntranceGate" class="control-label"></label>
+                <label asp-for="EntranceGate" class="control-label">Porteria de ingreso:</label><br />
                 <select asp-for="EntranceGate" class="form-control">
-                    <option value="" disabled="" selected="">Portería de ingreso</option>
-                    <option value="N">Norte</option>
-                    <option value="S">Sur</option>
-                    <option value="W">Oriental</option>
-                    <option value="E">Occidental</option>
+                    <option value="" disabled="" selected=""></option>
+                    <option value="Norte">Norte</option>
+                    <option value="Sur">Sur</option>
+                    <option value="Oriental">Oriental</option>
+                    <option value="Occidental">Occidental</option>
                 </select>
                 <span asp-validation-for="EntranceGate" class="text-danger"></span>
             </div>
+            <br />
+            <br />
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Registrar ingreso" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+<br />
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">Regresar al validador</a>
 </div>
 
 @section Scripts {
