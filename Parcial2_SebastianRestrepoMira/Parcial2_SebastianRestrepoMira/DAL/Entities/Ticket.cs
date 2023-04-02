@@ -8,7 +8,7 @@ namespace Parcial2_SebastianRestrepoMira.DAL.Entities
         [Key]
         [Required]
         public Guid Id { get; set; }
-        [Display(Name = "Uso de Boleto")]
+        //[Display(Name = "Uso de Boleto")]
         public DateTime? UseDate { get; set; }
         public bool IsUsed { get; set; }
         public string? EntranceGate { get; set; }
